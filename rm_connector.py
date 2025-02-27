@@ -46,7 +46,7 @@ class RedmineConnector:
         Получение информации о задачи в редмайне по номеру (проект не важен)
 
         :param issue_id: Номер задачи в редмайне
-        :return: Статус задачи str
+        :return: Объект задачи
         """
         issue = self.redmine.issue.get(issue_id, include=['children', 'journals', 'watchers'])
         return issue
@@ -87,10 +87,3 @@ class RedmineConnector:
             if user.custom_fields.get(self.telegram_field_id).value == telegram_id:
                 return user
         return None
-
-
-
-# tele = '779500420'
-# rm = RedmineConnector()
-# users = rm.get_user_by_id(tele)
-# print(users)
